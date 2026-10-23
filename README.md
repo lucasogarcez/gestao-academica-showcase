@@ -20,13 +20,12 @@ Plataforma de gestão acadêmica projetada para otimizar fluxos administrativos 
 *   🛡️ **Segurança e Rate Limit:** Proteção ativa contra ataques de força bruta no painel de autenticação utilizando `django-axes`, incluindo interface gráfica (IHM) de bloqueio com contagem regressiva em cache.
 *   🧪 **Testes Automatizados:** Suíte de testes validando desde lógicas internas de modelos (`pytest`) até simulações completas de usuário (End-to-End) para upload de arquivos em formulários multi-etapas utilizando `Playwright`.
 *   📊 **Dashboard de Telemetria e Predição:** Motor de agregações avançadas em SQL via ORM do Django (utilizando `Annotate`, `ExpressionWrapper` e `TruncMonth`) para gerar relatórios gerenciais em tempo real, incluindo o cálculo dinâmico de risco de evasão de alunos (< 70% de frequência).
-*   🏗️ **Arquitetura Zero Trust & PaaS:** Infraestrutura de produção desenhada para alta disponibilidade e manutenção zero, utilizando **DigitalOcean Droplet** (Computação), **DigitalOcean Managed Database** (Cofre de dados com *Point-in-Time Recovery*) e **Cloudflare** na borda atuando como escudo WAF/DDoS.
 
 ---
 
 ## 🚀 Live Demo (Acesso Rápido)
 
-O sistema está hospedado na nuvem com um banco de dados populado para demonstração imediata.
+O sistema está hospedado na nuvem com um banco de dados populado para demonstração imediata. A primeira carga pode levar cerca de um minuto para carregar.
 
 🔗 **Acesse a plataforma aqui:** [https://django-edu-manager.onrender.com](https://django-edu-manager.onrender.com)
 
@@ -73,4 +72,4 @@ Este repositório público atua como uma **Vitrine de Arquitetura (Showcase)**. 
 Para avaliar o sistema em funcionamento, suas validações, segurança e UI/UX, por favor, utilize o **Live Demo** na nuvem com as credenciais fornecidas acima.
 
 ## 📄 Licença
-Este projeto está sob a licença Apache 2.0. Consulte o arquivo [LICENSE](LICENCE) para mais detalhes.
+Este projeto está sob a licença Apache 2.0. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
