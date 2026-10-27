@@ -3,73 +3,132 @@
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
-![Playwright](https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Pytest](https://img.shields.io/badge/Pytest-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white)
+![Playwright](https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=white)
 
-Aviso: Esta é uma versão de portfólio (sanitizada e anonimizada) baseada em um software real (**produto comercial de código fechado**) desenvolvido inicialmente como projeto de extensão universitária (IFTM) para otimizar processos em fundações públicas de esporte e lazer.
+> **Aviso:** esta é uma versão de portfólio (sanitizada e anonimizada) de um software real, **produto comercial de código fechado**, desenvolvido inicialmente como projeto de extensão universitária (IFTM) para otimizar processos em fundações públicas de esporte e lazer.
 
-## 📌 Visão Geral do Projeto
-Plataforma de gestão acadêmica projetada para otimizar fluxos administrativos e matrículas de instituições públicas. Desenvolvida em Django e PostgreSQL, o sistema funde a visão de produto (eficiência em alocações de turmas e modalidades) com engenharia avançada: integração robusta de planilhas, fluxos de saúde dinâmicos e cobertura de testes automatizados.
+![Visão executiva: alunos ativos por modalidade e novas matrículas por mês](docs/screenshots/02-visao-executiva.png)
+
+*Visão executiva: alunos ativos e novas matrículas por mês, divididos entre Esporte e Lazer.*
+
+🔗 **[Acessar a demo online](https://django-edu-manager.onrender.com)** (contas de teste na seção *Live Demo*, mais abaixo)
 
 ---
 
-## ✨ Destaques de Engenharia (Features)
+## 📌 Visão Geral
 
-*   📊 **Parser de Excel Resiliente:** Algoritmo de varredura customizado (`import_utils.py`) capaz de ingerir dados desestruturados de planilhas complexas, contornando células mescladas, dados ausentes e colisões de chaves compostas (Strict Identity).
-*   📋 **Máquina de Estados em Formulários:** Módulo de atestados de saúde dinâmico com intertravamento mecânico de campos. Aplica regras estritas de preenchimento com bypass condicional de validação para a diretoria/secretaria.
-*   🛡️ **Segurança e Rate Limit:** Proteção ativa contra ataques de força bruta no painel de autenticação utilizando `django-axes`, incluindo interface gráfica (IHM) de bloqueio com contagem regressiva em cache.
-*   🧪 **Testes Automatizados:** Suíte de testes validando desde lógicas internas de modelos (`pytest`) até simulações completas de usuário (End-to-End) para upload de arquivos em formulários multi-etapas utilizando `Playwright`.
-*   📊 **Dashboard de Telemetria e Predição:** Motor de agregações avançadas em SQL via ORM do Django (utilizando `Annotate`, `ExpressionWrapper` e `TruncMonth`) para gerar relatórios gerenciais em tempo real, incluindo o cálculo dinâmico de risco de evasão de alunos (< 70% de frequência).
+Plataforma de gestão acadêmica para fundações públicas de esporte e lazer, usada por cerca de **65 funcionários** para gerir mais de **5.500 alunos**. Cobre cadastro de alunos, matrículas, alocação de turmas, lançamento de frequência, controle de atestados de saúde e relatórios gerenciais.
+
+Desenvolvida em Django e PostgreSQL, une eficiência operacional (alocação de turmas e modalidades) com engenharia sólida: importação robusta de planilhas, formulários de saúde dinâmicos, controle de acesso por perfil e testes automatizados.
+
+---
+
+## ✨ Destaques de Engenharia
+
+* 📥 **Parser de Excel resiliente:** algoritmo próprio (`import_utils.py`) que lê planilhas desestruturadas, contornando células mescladas, dados ausentes e colisões de chave composta.
+* 📋 **Formulários de saúde dinâmicos:** módulo de atestados com travamento condicional de campos e regras de preenchimento, com exceções de validação para a diretoria e a secretaria.
+* 🛡️ **Segurança no login:** proteção contra força bruta com `django-axes`, incluindo tela de bloqueio com contagem regressiva.
+* 🧪 **Testes automatizados:** lógica de modelos com `pytest` e testes de ponta a ponta (E2E) do upload de arquivos em formulários de várias etapas com `Playwright`.
+* 📈 **Dashboard gerencial e risco de evasão:** agregações em SQL via ORM do Django (`Annotate`, `ExpressionWrapper`, `TruncMonth`) para relatórios em tempo real, incluindo o cálculo de risco de evasão (frequência abaixo de 70%).
+* 🔐 **Permissões por perfil:** cinco perfis de acesso, com o professor restrito às turmas em que está alocado (relação N:N).
+
+---
+
+## 🖼️ Telas do Sistema
+
+### Importação de planilhas Excel
+
+![Importação de planilha Excel com tratamento de dados inconsistentes](docs/screenshots/importacao-excel.gif)
+
+*Planilha com células vazias e documento duplicado: o parser importa o que é válido e informa o que foi ignorado.*
+
+### Relatório gerencial: saúde das turmas e risco de evasão
+
+![Saúde das turmas: frequência por turma, risco de evasão e evolução mensal](docs/screenshots/01-saude-turmas.webp)
+
+*Frequência de cada turma, os alunos em risco de evasão (abaixo de 70%) e a evolução mensal por modalidade. A visão executiva aparece no topo desta página.*
+
+### Gestão de turmas
+
+![Lista de turmas com filtros por modalidade, professor, polo, categoria e dia da semana](docs/screenshots/03-gerenciar-turmas.png)
+
+*Filtros combinados e cards com horário, dias, polo e professores. A tag indica se a turma exige atestado.*
+
+### Cadastro do aluno em etapas
+
+![Cadastro do aluno, etapa "Atestado Médico"](docs/screenshots/04-cadastro-etapas.png)
+
+*O cadastro é dividido em quatro etapas: Dados do Aluno, Questionário de Saúde, Atestado Médico e Modalidade. A imagem mostra a etapa do atestado, que é **opcional**: pode ser preenchida depois, caso o aluno ainda não tenha o documento.*
+
+### Controle de acesso por perfil
+
+[![Visão do professor: apenas as turmas em que está alocado](docs/screenshots/06-visao-professor.png)](docs/screenshots/06-visao-professor.png)
+
+*O professor vê somente as turmas em que está alocado.*
+
+| Secretaria | Admin |
+| :---: | :---: |
+| [![Chamado visto pela Secretaria, sem campo de resposta](docs/screenshots/07a-ticket-secretaria.png)](docs/screenshots/07a-ticket-secretaria.png) | [![Chamado visto pelo Admin, com resposta técnica e status](docs/screenshots/07b-ticket-admin.png)](docs/screenshots/07b-ticket-admin.png) |
+| *Acompanha o chamado, mas não responde.* | *Único perfil que responde e fecha chamados.* |
+
+### Proteção contra força bruta
+
+![Tela de bloqueio do login com contagem regressiva](docs/screenshots/05-bloqueio-login.png)
+
+*Após tentativas inválidas seguidas, o login é bloqueado e exibe o tempo restante.*
 
 ---
 
 ## 🚀 Live Demo (Acesso Rápido)
 
-O sistema está hospedado na nuvem com um banco de dados populado para demonstração imediata. A primeira carga pode levar cerca de um minuto para carregar.
+O sistema está hospedado na nuvem, com um banco populado com dados fictícios. A primeira carga pode levar cerca de um minuto.
 
-🔗 **Acesse a plataforma aqui:** [https://django-edu-manager.onrender.com](https://django-edu-manager.onrender.com)
+🔗 **Acesse a plataforma:** [https://django-edu-manager.onrender.com](https://django-edu-manager.onrender.com)
 
-Para auditar as barreiras de segurança, painéis customizados e fluxos de cada nível hierárquico, utilize as credenciais de calibração abaixo. 
+Para testar as permissões de cada perfil, use as contas abaixo.
 
-🔑 **Senha universal para todas as contas:** `senha123`
+🔑 **Senha de todas as contas:** `senha123`
 
-| Perfil de Acesso | E-mail de Login (Usuário) | Nível de Permissão na Planta |
+| Perfil | E-mail de login | O que pode fazer |
 | :--- | :--- | :--- |
-| **⚙️ Admin (Mestre)** | `admin@portfolio.com` | **Acesso Irrestrito:** Visão global e absoluta de todas as tabelas. Único nível hierárquico com chave de acesso para **responder e fechar** tickets de suporte. |
-| **🛡️ Diretoria** | `diretor@portfolio.com` | **Acesso Global:** Gestão total de polos, matrizes curriculares, usuários e auditoria do sistema. |
-| **📂 Secretaria** | `secretaria@portfolio.com` | **Operacional:** Gerenciamento de alunos, matrículas, alocação de turmas e emissão de tickets de suporte. |
-| **👨‍🏫 Professor** | `professor@portfolio.com` | **Restrito (Multitenancy):** Visualização blindada. Acessa apenas as turmas nas quais está fisicamente alocado (relação N:N). |
-| **🧑‍💻 Estagiário** | `estagiario@portfolio.com` | **Super Restrito:** Perfil de leitura/auxílio com bloqueios severos de endpoints para demonstrar validação de backend. |
+| **⚙️ Admin** | `admin@portfolio.com` | **Acesso total.** Vê todas as tabelas e é o único que **responde e fecha** chamados de suporte. |
+| **🛡️ Diretoria** | `diretor@portfolio.com` | **Acesso global:** gestão de polos, matrizes curriculares, usuários e auditoria do sistema. |
+| **📂 Secretaria** | `secretaria@portfolio.com` | **Operacional:** alunos, matrículas, alocação de turmas e abertura de chamados. |
+| **👨‍🏫 Professor** | `professor@portfolio.com` | **Restrito:** acessa apenas as turmas em que está alocado (relação N:N). |
+| **🧑‍💻 Estagiário** | `estagiario@portfolio.com` | **Somente apoio:** perfil de leitura com endpoints bloqueados, para demonstrar a validação no backend. |
 
-> **💡 Dica de Teste (Auditoria de Intertravamento de Privilégios):** Qualquer usuário do sistema pode acionar a equipe técnica. Faça login como **Professor** ou **Secretaria** e abra um Ticket de Suporte. Em seguida, note que a interface bloqueia a sua capacidade de interagir com a resolução. Acesse a conta **Admin (Mestre)** para visualizar todos os chamados abertos e emitir a resposta, validando a proteção contra escalonamento de privilégios.
+> **💡 Dica de teste (privilégios):** entre como **Professor** ou **Secretaria** e abra um chamado de suporte. Note que a interface não permite responder a ele. Depois entre como **Admin**, veja todos os chamados e envie a resposta, comprovando a proteção contra escalonamento de privilégios.
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
-*   **Backend:** Python 3, Django, Django REST Framework
-*   **Banco de Dados:** PostgreSQL
-*   **Frontend:** HTML5, CSS3, JavaScript (Vanilla), Bootstrap
-*   **Testes:** Pytest, Playwright (E2E E2E Testing)
-*   **Infraestrutura:** Docker, Docker Compose
-*   **Segurança:** Django Axes (Rate Limiting)
+* **Backend:** Python 3, Django, Django REST Framework
+* **Banco de dados:** PostgreSQL
+* **Frontend:** HTML5, CSS3, JavaScript (Vanilla), Bootstrap
+* **Testes:** Pytest, Playwright (E2E)
+* **Infraestrutura:** Docker, Docker Compose
+* **Segurança:** Django Axes (limite de tentativas de login)
 
 ---
 
 ## 🗂️ Sobre este Repositório (Showcase)
-Por se tratar de um produto B2B/B2G de código fechado (Closed-Source) comercializado no modelo SaaS para o setor público, o repositório principal com a totalidade do código (MVC completo) é mantido **privado** para proteção de propriedade intelectual.
 
-Este repositório público atua como uma **Vitrine de Arquitetura (Showcase)**. Aqui você encontrará recortes reais de código (*Snippets*) que demonstram a maturidade da engenharia do projeto:
+Este é um produto B2B/B2G de código fechado, comercializado como SaaS para o setor público. O repositório principal, com o código completo, é mantido **privado** para proteger a propriedade intelectual.
 
-*    📂 `seed_portfolio.py`: Script customizado de automação de testes que utiliza idempotência (`get_or_create`) para forjar toda a estrutura relacional de Polos, Turmas e Usuários, injetando simulações probabilísticas de chamadas para o motor de evasão.
+Este repositório público é uma **vitrine**: reúne trechos reais de código, anonimizados, que mostram as práticas de engenharia do projeto.
 
-*    📂 `utils.py`: Demonstração dos algoritmos de limpeza e transformação de dados (*Data Cleansing*).
+* 📂 `seed_portfolio.py`: script de carga de dados de demonstração, idempotente (`get_or_create`), que cria polos, turmas, usuários e um histórico de chamadas simulado para alimentar o cálculo de evasão.
+* 📂 `utils.py`: algoritmos de limpeza e transformação de dados (*data cleansing*).
+* 📂 `relatorios_gerenciais.py`: views com a lógica de agregação SQL do painel gerencial.
+* 📂 `docker-compose.yml`: ambiente de desenvolvimento com contêineres.
 
-*    📂 `relatorios_gerenciais.py`: Recorte das views contendo a lógica de agregação SQL avançada do painel gerencial.
+Para ver o sistema funcionando, com suas validações, segurança e interface, use a **Live Demo** acima.
 
-*    📂 `docker-compose.yml`: Topologia de conteinerização do ambiente de desenvolvimento.
-
-Para avaliar o sistema em funcionamento, suas validações, segurança e UI/UX, por favor, utilize o **Live Demo** na nuvem com as credenciais fornecidas acima.
+---
 
 ## 📄 Licença
+
 Este projeto está sob a licença Apache 2.0. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
